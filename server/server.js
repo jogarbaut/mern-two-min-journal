@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 // Express app
 const app = express();
@@ -18,7 +19,9 @@ app.use("/api/entry", entryRoutes);
 const userRoutes = require("./routes/user.routes");
 app.use("/api/user", userRoutes);
 
-require('./config/mongoose.config'); 
-app.listen(process.env.PORT, () => {
-  console.log(`Listening at PORT ${process.env.PORT}`)
-})
+app.use(cors);
+
+require("./config/mongoose.config");
+app.listen(8000, () => {
+  console.log(`Listening at PORT 8000`);
+});
