@@ -3,52 +3,83 @@
 
 /* layout */
 :root {
-  /* color palette: https://coolors.co/palette/463f3a-8a817c-bcb8b1-f4f3ee-e0afa0 */
-  --primary-dark: #463f3a;
-  --secondary-dark: #8A817C;
-  --tertiary-dark: #BCB8B1;
+  --primary-dark: #CD760F;
+  --primary-dark-alt: #31452C;
   --light-bg: #f4f3ee;
-  --bright: #E0AFA0;
+  --light-white: #FBF7F5; 
   --error: #e7195a;
 }
 
 body {
-  background: var(--secondary-dark);
+  background: var(--light-white);
   margin: 0;
   font-family: "Poppins";
   text-transform: uppercase;
 }
 
 header {
-  background: #fff;
+  background: var(--primary-dark-alt);
 }
 
 header .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: 10px 10%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+header img {
+  max-height: 50px;
+}
+
+header span {
+  color: var(--light-white);
+  margin-right: 20px;
+}
+
 header a {
-  color: #333;
+  color: var(--light-white);
   text-decoration: none;
 }
 
 .pages {
-  max-width: 1400px;
-  padding: 20px;
+  max-width: 1200px;
+  min-width: 480px;
+  padding: 5% 10%;
   margin: 0 auto;
 }
 
 /* homepage */
-/* .home {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 100px;
-} */
+
+.toggle-entry-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5%;
+  margin-bottom: 25px;
+}
+
+.toggle-entry-container button {
+  margin: 0 20px;
+  background: var(--primary-dark);
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.subtitle {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.entries {
+  margin-bottom: 25px;
+}
 
 .entry-details {
   background: var(--light-bg);
@@ -56,12 +87,13 @@ header a {
   margin: 20px auto;
   padding: 20px;
   position: relative;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
 }
 
 .entry-details h4 {
   margin: 0 0 10px 0;
-  font-size: 1.2em;
+  font-size: 1em;
+  word-spacing: .4em;
   color: var(--primary-dark);
 }
 
@@ -98,13 +130,13 @@ header a {
 /* NEW GRID LAYOUT FOR ENTRY FORM */
 
 .create {
-  padding: 4rem;
+  padding: 1rem 4rem;
   background-color: var(--light-bg);
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
 }
 .create .entry-grid {
   display: grid;
-  gap: 2.5rem;
+  gap: 2rem;
   grid-template-columns: repeat(2, 1fr);
 }
 
@@ -126,6 +158,10 @@ header a {
   text-align: center;
 }
 
+.form-group-block > input {
+  height: 5rem;
+}
+
 .braindump {
   grid-column-start: 1;
   grid-row-start: 7;
@@ -141,6 +177,19 @@ header a {
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
+  font-family: inherit;
+}
+
+select {
+  padding: 7px 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%; 
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: inherit;
+  text-align: center;
 }
 
 /* NEW GRID LAYOUT FOR ENTRY FORM */
@@ -151,6 +200,7 @@ input {
 }
 
 label {
+  font-size: .9rem;
   margin-right: 10px;
 }
 
@@ -165,6 +215,7 @@ input {
 }
 
 form button {
+  margin: 20px 0;
   background: var(--primary-dark);
   border: 0;
   color: #fff;
@@ -187,6 +238,10 @@ input.error {
   border: 1px solid var(--error);
 }
 
+textarea.error {
+    border: 1px solid var(--error);
+}
+
 /* navbar */
 nav {
   display: flex;
@@ -198,14 +253,13 @@ nav a {
 }
 
 nav button {
-  background: #fff;
-  color: var(--primary-dark);
-  border: 2px solid var(--primary-dark);
-  padding: 6px 10px;
-  border-radius: 4px;
+  background: var(--primary-dark);
+  border: 0;
+  color: #fff;
+  padding: 10px;
   font-family: "Poppins";
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 1em;
 }
 
 /* auth forms */
@@ -219,7 +273,7 @@ form.login {
 }
 
 /* other buttons */
-.home-button {
+.cancel-button {
   background: var(--primary-dark);
   border: 0;
   color: #fff;
@@ -227,27 +281,53 @@ form.login {
   font-family: "Poppins";
   border-radius: 4px;
   cursor: pointer;
+  margin: 0 20px;
 }
 
 /* bar meter */
 .bar-meter-container {
   background-color: var(--light-bg);
   padding: 2.5%;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+  margin-bottom: 25px;
 }
 
 .bar-meter {
   position: relative;
-  width: 100%;
-  height: 30px;
+  width: 85%;
+  height: 12.5px;
   background: linear-gradient(to right, red, green);
 }
 
 .bar-meter .bar-indicator {
   position: absolute;
-  top: -5px;
-  /* left: 25%; */
-  width: 40px;
-  height: 40px;
+  top: -6px;
+  /* left: 50%; Property is dynamically handled BarMeter.js component */
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   background-color: #000;
+  transform: translate(-50%);
+  box-shadow: 0px 0px 25px rgba(255, 255, 255, 1);
+}
+
+.bar-meter-container .bar-labels-container {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: repeat(5, 1fr);
+  text-align: center;
+  font-size: .9rem;
+}
+
+.bar-meter-flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+@media screen and (min-width: 480px) and (max-width: 1024px) {
+  .bar-meter-container .bar-labels-container { 
+    display: none; 
+  }
 }

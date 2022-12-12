@@ -34,10 +34,18 @@ function EntryDetails({ entry }) {
 
   return (
     <div className="entry-details">
-      <h4>{format(new Date(entry.createdAt), 'MM/dd/yyyy')}</h4>
+      <h4>{format(new Date(entry.createdAt), 'eeee MM/dd/yyyy')}</h4>
       <p>
-        <strong>Place: </strong>
-        {entry.place}
+        <strong>You Felt: </strong>
+        {entry.feel}
+      </p>
+      <p>
+        <strong>You were Grateful for: </strong>
+        {entry.grateful}
+      </p>
+      <p>
+        <strong>Your Top Priority was to: </strong>
+        {entry.topPriorityAction}
       </p>
       <span
         className="edit material-symbols-outlined"

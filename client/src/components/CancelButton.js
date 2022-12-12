@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const HomeButton = () => {
+const CancelButton = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -8,10 +8,10 @@ const HomeButton = () => {
   };
 
   return (
-    <button className="home-button" onClick={handleClick}>
-      Home
+    <button className="cancel-button" onClick={handleClick}>
+      Cancel
     </button>
   );
 };
 
-export default HomeButton;
+export default CancelButton;

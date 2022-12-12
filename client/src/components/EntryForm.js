@@ -1,13 +1,16 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useEntryContext } from "../hooks/useEntryContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+
+import CancelButton from "./CancelButton";
 
 const EntryForm = () => {
   const { dispatch } = useEntryContext();
   const { user } = useAuthContext();
 
   const [place, setPlace] = useState("");
-  const [feel, setFeel] = useState("");
+  const [feel, setFeel] = useState("Energized");
   const [feelWhy, setFeelWhy] = useState("");
   const [energizedHow, setEnergizedHow] = useState("");
   const [grateful, setGrateful] = useState("");
@@ -28,6 +31,8 @@ const EntryForm = () => {
 
   const [error, setError] = useState(null);
   const [emptyFields, setEmptyFields] = useState([]);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -93,18 +98,21 @@ const EntryForm = () => {
       setWeeds("");
       setError(null);
       setEmptyFields([]);
-      console.log("New entry added", json);
       dispatch({ type: "CREATE_ENTRY", payload: json });
+      navigate("/");
     }
   };
 
   return (
     <>
-      <h1>Create a New Entry</h1>
       <form className="create" onSubmit={handleSubmit}>
+      <div className="subtitle">
+            <h2>Create a New Entry</h2>
+          </div>
         <div className="entry-grid">
+
           <div className="form-group-flex grid-col-span-2">
-            <label>Place </label>
+            <label>Place: </label>
             <input
               type="text"
               onChange={(e) => setPlace(e.target.value)}
@@ -114,17 +122,25 @@ const EntryForm = () => {
           </div>
 
           <div className="form-group-block grid-col-span-2">
-            <label>Today I feel </label>
-            <input
+            <label>Today I feel: </label>
+            <select
               type="text"
               onChange={(e) => setFeel(e.target.value)}
               value={feel}
-              className={emptyFields.includes("feel") ? "error" : ""}
-            />
+              className={
+                emptyFields.includes("feel") ? "error" : ""
+              }
+            >
+              <option value="Energized">Energized</option>
+              <option value="Good">Good</option>
+              <option value="Fine">Fine</option>
+              <option value="Meh">Meh</option>
+              <option value="Exhausted">Exhausted</option>
+            </select>
           </div>
 
           <div className="form-group-block">
-            <label>I feel this way because </label>
+            <label>I feel this way because: </label>
             <input
               type="text"
               onChange={(e) => setFeelWhy(e.target.value)}
@@ -134,7 +150,7 @@ const EntryForm = () => {
           </div>
 
           <div className="form-group-block">
-            <label>To feel more energized I can </label>
+            <label>To feel more energized I can: </label>
             <input
               type="text"
               onChange={(e) => setEnergizedHow(e.target.value)}
@@ -144,7 +160,7 @@ const EntryForm = () => {
           </div>
 
           <div className="form-group-block">
-            <label>Something or someone I am grateful for </label>
+            <label>Something or someone I am grateful for: </label>
             <input
               type="text"
               onChange={(e) => setGrateful(e.target.value)}
@@ -154,7 +170,7 @@ const EntryForm = () => {
           </div>
 
           <div className="form-group-block">
-            <label>I am grateful because </label>
+            <label>I am grateful because: </label>
             <input
               type="text"
               onChange={(e) => setGratefulWhy(e.target.value)}
@@ -164,7 +180,7 @@ const EntryForm = () => {
           </div>
 
           <div className="form-group-block">
-            <label>Today my top priority is </label>
+            <label>Today my top priority is: </label>
             <input
               type="text"
               onChange={(e) => setTopPriority(e.target.value)}
@@ -174,7 +190,7 @@ const EntryForm = () => {
           </div>
 
           <div className="form-group-block">
-            <label>This is my top priority because </label>
+            <label>This is my top priority because: </label>
             <input
               type="text"
               onChange={(e) => setTopPriorityWhy(e.target.value)}
@@ -184,9 +200,7 @@ const EntryForm = () => {
           </div>
 
           <div className="form-group-block">
-            <label>
-              What is an action you will take to achieve this priority?{" "}
-            </label>
+            <label>One action I will take towards this priority: </label>
             <input
               type="text"
               onChange={(e) => setTopPriorityAction(e.target.value)}
@@ -198,7 +212,7 @@ const EntryForm = () => {
           </div>
 
           <div className="form-group-flex">
-            <label>What time will you stop working? </label>
+            <label>I will stop working at: </label>
             <input
               type="number"
               onChange={(e) => setStopWorkingTime(e.target.value)}
@@ -219,7 +233,7 @@ const EntryForm = () => {
           </div>
 
           <div className="form-group-block braindump">
-            <label>Brain Dump </label>
+            <label>Brain Dump: </label>
             <textarea
               type="text"
               onChange={(e) => setBrainDump(e.target.value)}
@@ -228,7 +242,7 @@ const EntryForm = () => {
             />
           </div>
           <div className="form-group-block">
-            <label>Morning Plan </label>
+            <label>Morning Plan: </label>
             <input
               type="text"
               onChange={(e) => setMorningPlan(e.target.value)}
@@ -238,7 +252,7 @@ const EntryForm = () => {
           </div>
 
           <div className="form-group-block">
-            <label>Afternoon Plan </label>
+            <label>Afternoon Plan: </label>
             <input
               type="text"
               onChange={(e) => setAfternoonPlan(e.target.value)}
@@ -248,7 +262,7 @@ const EntryForm = () => {
           </div>
 
           <div className="form-group-block">
-            <label>Evening Plan </label>
+            <label>Evening Plan: </label>
             <input
               type="text"
               onChange={(e) => setEveningPlan(e.target.value)}
@@ -258,7 +272,7 @@ const EntryForm = () => {
           </div>
 
           <div className="form-group-flex">
-            <label>What time will you sleep? </label>
+            <label>I will sleep at: </label>
             <input
               type="number"
               onChange={(e) => setSleepTime(e.target.value)}
@@ -278,7 +292,7 @@ const EntryForm = () => {
           </div>
 
           <div className="form-group-block">
-            <label>Seeds </label>
+            <label>Seeds: </label>
             <input
               type="text"
               onChange={(e) => setSeeds(e.target.value)}
@@ -288,7 +302,7 @@ const EntryForm = () => {
           </div>
 
           <div className="form-group-block">
-            <label>Weeds </label>
+            <label>Weeds: </label>
             <input
               type="text"
               onChange={(e) => setWeeds(e.target.value)}
@@ -299,7 +313,7 @@ const EntryForm = () => {
         </div>
 
         <div className="form-group-block grid-col-span-2">
-          <button>Add Entry</button>
+          <button>Save Entry</button>
           {error && <div className="error">{error}</div>}
         </div>
       </form>

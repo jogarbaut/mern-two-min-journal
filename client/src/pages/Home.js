@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useEntryContext } from "../hooks/useEntryContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 
@@ -6,10 +6,13 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import EntryDetails from "../components/EntryDetails";
 import EntryForm from "../components/EntryForm";
 import BarMeter from "../components/BarMeter";
+import EntryToggler from "../components/EntryToggler";
 
 const Home = () => {
   const { entries, dispatch } = useEntryContext();
   const { user } = useAuthContext();
+
+  const [toggleEntryForm, setToggleEntryForm] = useState(false);
 
   useEffect(() => {
     const fetchEntries = async () => {
@@ -30,17 +33,20 @@ const Home = () => {
 
   return (
     <>
-      <BarMeter />
-      <div className="home">
-        <div className="entries">
-          {entries &&
-            entries.map((entry) => (
-              <EntryDetails key={entry._id} entry={entry} />
-            ))}
-        </div>
-        <EntryForm />
+      {entries && <BarMeter lastEntry={entries[0]} />}
 
+      <EntryToggler setToggleEntryForm={setToggleEntryForm} />
+
+      {
+        toggleEntryForm ? <EntryForm /> :
+        <div className="entries">
+        {entries &&
+          entries.map((entry) => (
+            <EntryDetails key={entry._id} entry={entry} />
+          ))}
       </div>
+      }
+      
     </>
   );
 };

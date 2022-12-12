@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
+import logoPrimary from "../assets/images/logo-primary.png";
 
 const Navbar = () => {
   const { logout } = useLogout();
@@ -14,7 +15,8 @@ const Navbar = () => {
     <header>
       <div className="container">
         <Link to="/">
-          <h1>Two Minute Journal</h1>
+          <img className="logo" src={logoPrimary} />
+          {/* <h1>Two Minute Journal</h1> */}
         </Link>
         <nav>
           {user && (
