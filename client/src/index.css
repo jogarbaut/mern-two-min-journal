@@ -3,14 +3,20 @@
 
 /* layout */
 :root {
-  --primary: #1aac83;
+  /* color palette: https://coolors.co/palette/463f3a-8a817c-bcb8b1-f4f3ee-e0afa0 */
+  --primary-dark: #463f3a;
+  --secondary-dark: #8A817C;
+  --tertiary-dark: #BCB8B1;
+  --light-bg: #f4f3ee;
+  --bright: #E0AFA0;
   --error: #e7195a;
 }
 
 body {
-  background: #f1f1f1;
+  background: var(--secondary-dark);
   margin: 0;
   font-family: "Poppins";
+  text-transform: uppercase;
 }
 
 header {
@@ -38,14 +44,14 @@ header a {
 }
 
 /* homepage */
-.home {
-  /* display: grid;
+/* .home {
+  display: grid;
   grid-template-columns: 3fr 1fr;
-  gap: 100px; */
-}
+  gap: 100px;
+} */
 
 .entry-details {
-  background: #fff;
+  background: var(--light-bg);
   border-radius: 4px;
   margin: 20px auto;
   padding: 20px;
@@ -56,7 +62,7 @@ header a {
 .entry-details h4 {
   margin: 0 0 10px 0;
   font-size: 1.2em;
-  color: var(--primary);
+  color: var(--primary-dark);
 }
 
 .entry-details p {
@@ -88,23 +94,78 @@ header a {
 }
 
 /* entry form */
+
+/* NEW GRID LAYOUT FOR ENTRY FORM */
+
+.create {
+  padding: 4rem;
+  background-color: var(--light-bg);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+}
+.create .entry-grid {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.create .grid-col-span-2 {
+  grid-column: span 2;
+}
+
+.create .grid-col-span-4 {
+  grid-column: span 4;
+}
+
+.form-group-flex {
+  display: flex;
+  align-items: center;
+}
+
+.form-group-block {
+  display: block;
+  text-align: center;
+}
+
+.braindump {
+  grid-column-start: 1;
+  grid-row-start: 7;
+  grid-row-end: span 4;
+}
+
+.braindump textarea {
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 90%;
+  width: 100%; 
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* NEW GRID LAYOUT FOR ENTRY FORM */
+
 label,
 input {
   display: block;
 }
 
+label {
+  margin-right: 10px;
+}
+
 input {
   padding: 10px;
   margin-top: 10px;
-  margin-bottom: 20px;
-  width: 100%;
+  margin-bottom: 10px;
+  width: 100%; 
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
 form button {
-  background: var(--primary);
+  background: var(--primary-dark);
   border: 0;
   color: #fff;
   padding: 10px;
@@ -138,8 +199,8 @@ nav a {
 
 nav button {
   background: #fff;
-  color: var(--primary);
-  border: 2px solid var(--primary);
+  color: var(--primary-dark);
+  border: 2px solid var(--primary-dark);
   padding: 6px 10px;
   border-radius: 4px;
   font-family: "Poppins";
@@ -159,7 +220,7 @@ form.login {
 
 /* other buttons */
 .home-button {
-  background: var(--primary);
+  background: var(--primary-dark);
   border: 0;
   color: #fff;
   padding: 10px;
@@ -169,6 +230,11 @@ form.login {
 }
 
 /* bar meter */
+.bar-meter-container {
+  background-color: var(--light-bg);
+  padding: 2.5%;
+}
+
 .bar-meter {
   position: relative;
   width: 100%;
