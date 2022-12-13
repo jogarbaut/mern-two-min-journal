@@ -27,7 +27,7 @@ const Signup = () => {
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
-        <button disabled>Sign Up (Not Available for Demo)</button>
+        <button>Sign Up (Not Available for Demo)</button>
         {error && <div className="error">{error}</div>}
       </form>
     </>
